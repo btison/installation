@@ -6,6 +6,9 @@
 - set_fact:
     launcher_dashboard_url: "https://{{ launcher_host_cmd.stdout}}"
   when: launcher
+- set_fact:
+    launcher_dashboard_url: "https://launcher"
+  when: not launcher
 
 - name: Get Che dashboard url
   shell: oc get route/codeready -o jsonpath='{.spec.host}' -n {{ che_namespace }}
@@ -14,6 +17,9 @@
 - set_fact:
     che_dashboard_url: "https://{{ che_host_cmd.stdout}}"
   when: che and launcher
+- set_fact:
+    che_dashboard_url: "https://che"
+  when: not (che and launcher)
 
 
 - name: Get 3scale dashboard url
@@ -23,13 +29,20 @@
 - set_fact:
     threescale_dashboard_url: "https://{{ threescale_host_cmd.stdout}}"
   when: threescale
+- set_fact:
+    threescale_dashboard_url: "https://threescale"
+  when: not threescale
 
 - name: Get apicurito dashboard url
   shell: oc get route/apicurito -o jsonpath='{.spec.host}' -n {{ apicurito_namespace }}
   register: apicurito_host_cmd
+  when: apicurito
 - set_fact:
     apicurito_dashboard_url: "https://{{ apicurito_host_cmd.stdout}}"
   when: apicurito
+- set_fact:
+    apicurito_dashboard_url: "https://apicurito"
+  when: not apicurito
 
 - name: Get shared Fuse dashboard url
   shell: oc get route/syndesis -o jsonpath='{.spec.host}' -n {{ fuse_namespace }}
@@ -37,6 +50,10 @@
   when: fuse
 - set_fact:
     fuse_dashboard_url: "https://{{ fuse_host_cmd.stdout}}"
+  when: fuse
+- set_fact:
+    fuse_dashboard_url: "https://fuse"
+  when: not fuse
 
 - name: Get SSO route
   shell: oc get route sso -o template --template \{\{.spec.host\}\} -n {{ eval_rhsso_namespace }}
