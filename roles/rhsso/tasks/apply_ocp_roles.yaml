@@ -9,4 +9,5 @@
   shell: "oc adm policy add-role-to-user view {{rhsso_evals_admin_username}} -n {{ eval_managed_fuse_namespace }}"
   register: policy_cmd
   failed_when: policy_cmd.rc != 0
+  when: fuse_managed
 
