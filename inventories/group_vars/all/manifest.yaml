@@ -3,7 +3,7 @@ integreatly_version: release-1.4.1
 # threescale version is controlled by the operator. Changing the operator version will change the 3scale version
 
 # controls whether threescale is installed or not.
-threescale: true
+threescale: false
 # below threescale variables below are not currently used. They define where and what to pull in from github. These will be important as we look to break out and decouple the resources from the installer ###############
 # not currently used but records the version installed by the operator, this should come from the status block
 threescale_version: '2.5.0.GA'
@@ -15,7 +15,7 @@ threescale_template_s3: '{{threescale_resources_base}}/amp-s3.yml'
 
 #controls whether che is installed or not
 #note che cannot be installed without launcher being present currently
-che: true
+che: false
 che_version: '1.0.0.GA'
 # by default the GA installer uses the :latest tag so we need to set the tagged version in the config
 che_server_image: 'registry.access.redhat.com/codeready-workspaces/server:1.0'
@@ -23,19 +23,25 @@ che_operator_image: 'registry.access.redhat.com/codeready-workspaces/server-oper
 che_installer: 'https://raw.githubusercontent.com/redhat-developer/codeready-workspaces-deprecated/{{che_version}}/operator-installer/deploy.sh'
 
 #controls whether enmasse is installed or not
+<<<<<<< HEAD
 enmasse: true
 enmasse_version: '1.1.1.GA'
+=======
+enmasse: false
+enmasse_version: '1.1.0.GA'
+>>>>>>> 
 enmasse_git_url: https://github.com/jboss-container-images/amq-online-images.git
 
 #controls whether fuse is installed or not
-fuse: true
+fuse: false
+fuse_managed: false
 #This is the release tag for fuse on openshift in github currently used to pull in the templates and image streams
 fuse_release_tag: 'application-templates-2.1.fuse-730065-redhat-00002'
 #not currently used as the operator decides what to install
 fuse_version: '7.3'
 
 #controls whether Fuse Online is installed or not
-fuse_online: true
+fuse_online: false
 # Below Fuse vars are not currently used but will be used to source the resources needed to do the install.
 fuse_online_release_tag: '1.6.19'
 fuse_online_resources_base: 'https://raw.githubusercontent.com/syndesisio/fuse-online-install/{{fuse_online_release_tag}}/resources'
@@ -44,7 +50,7 @@ fuse_online_imagestream_resources: '{{fuse_online_resources_base}}/fuse-online-i
 fuse_online_crd_resources: '{{fuse_online_resources_base}}/syndesis-crd.yml'
 
 #controls whether Launcher is installed or not.
-launcher: true
+launcher: false
 # https://github.com/fabric8-launcher/launcher-openshift-templates/issues/46
 # we will need to set this during a release to the latest commit hash on master to ensure it doesn't change under us example: c1efdf1
 launcher_backend_image_tag: '7a7fd07'
@@ -68,25 +74,25 @@ rhsso_operator_resources: 'https://raw.githubusercontent.com/integr8ly/keycloak-
 rhsso_namespace: 'sso'
 
 #controls whether gitea is installed or not
-gitea: true
+gitea: false
 gitea_version: '1.6.0'
 #below vars are not currently used but will be used once we source resources from outside of the installer
 gitea_operator_release_tag: 'v0.0.3'
 gitea_operator_resources: 'https://raw.githubusercontent.com/integr8ly/gitea-operator/{{gitea_operator_release_tag}}/deploy/'
 
 #controls whether webapp is installed or not
-webapp: true
+webapp: false
 #below vars are not currently used but reflect the current state. In the future they will be used when we source resources from outside of the installer
 webapp_version: '2.10.3'
 webapp_operator_release_tag: 'v0.0.17'
 webapp_operator_resources: 'https://raw.githubusercontent.com/integr8ly/tutorial-web-app-operator/{{webapp_operator_release_tag}}/deploy'
 
 #controls whether apicurito is installed or not
-apicurito: true
+apicurito: false
 apicurito_version: '0.2.18.Final'
 
 #controls whether nexus is installed or not
-nexus: true
+nexus: false
 nexus_version: '2.14.11-01'
 
 datasync: false
@@ -99,6 +105,8 @@ middleware_monitoring_operator_resources: 'https://raw.githubusercontent.com/int
 
 msbroker_release_tag: 'v0.0.6'
 msbroker_template: 'https://raw.githubusercontent.com/integr8ly/managed-service-broker/{{ msbroker_release_tag }}/templates/broker.template.yaml'
+
+user_rhsso: false
 
 # information about backups
 backup_version: '1.0.6'
