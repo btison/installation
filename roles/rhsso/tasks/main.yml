@@ -30,6 +30,7 @@
 - name: Get RH-SSO secure route
   local_action: command oc get route/{{ rhsso_secure_route_name.stdout }} -o template --template \{\{.spec.host\}\} -n {{ launcher_namespace }}
   register: rhsso_secure_route
+  when: launcher
 
 - name: "Generate secret for launcher client"
   set_fact:
