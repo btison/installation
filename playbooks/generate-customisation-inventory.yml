@@ -44,9 +44,11 @@
         - 'SSO_ADMIN_USERNAME'
         - 'SSO_ADMIN_PASSWORD'
       register: _eval_launcher_sso_dc_cmd
+      when: launcher
     - name: Set launcher sso playbook vars
       set_fact: "eval_launcher_{{ item.item | lower }}={{ item.stdout }}"
       with_items: "{{ _eval_launcher_sso_dc_cmd.results }}"
+      when: launcher
 
     - include_role:
         name: customisation
