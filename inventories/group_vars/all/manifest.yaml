@@ -113,5 +113,5 @@ backup_namespace: "openshift-integreatly-backups"
 
 # Supported oc versions
 supported_oc_versions:
-  - "3.11"
+  - "4.2"
 
