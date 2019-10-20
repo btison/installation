@@ -44,3 +44,15 @@
   shell: oc create -f /tmp/keycloak.json -n {{ sso_namespace }}
   register: rhsso_keycloak
   failed_when: rhsso_keycloak.stderr != '' and 'AlreadyExists' not in rhsso_keycloak.stderr
+
+- name: "Wait until sso-postgresql deployment config is created"
+  shell: oc get dc sso-postgresql -n {{ sso_namespace }}
+  register: result
+  until: result.stdout
+  retries: 50
+  delay: 1
+  failed_when: not result.stdout
+  changed_when: False
+
+- name: "Patch sso-postgresql dc"
+  shell: oc patch dc sso-postgresql -p '{"spec":{"triggers":[{"type":"ImageChange", "imageChangeParams":{"automatic":true,"containerNames":["sso-postgresql"],"from":{"kind":"ImageStreamTag","namespace":"openshift","name":"postgresql:9.6"}}}]}}' -n {{ sso_namespace }}
