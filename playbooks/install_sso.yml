@@ -19,6 +19,7 @@
         apps_redirect_uri: "{{ hostvars['EVAL_VARS']['eval_app_host'] }}"
         enable_threescale_wildcard_route: "{{ eval_threescale_enable_wildcard_route }}"
       tags: ['rhsso']
+      when: rhsso
     -
       name: Gather rhsso data
       block:
@@ -49,6 +50,7 @@
           set_fact:
             eval_rhsso_host: "{{ eval_sso_host_cmd.stdout }}"
       tags: ['bootstrap']
+      when: rhsso
     -
       name: Configure SSO Logout URL
       include_role:
@@ -57,3 +59,4 @@
       vars:
         rhsso_redirect_uri: "{{ hostvars['EVAL_VARS']['openshift_master_url'] }}"
       tags: ['rhsso']
+      when: rhsso

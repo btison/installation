@@ -22,6 +22,7 @@
           tasks_from: setup-master-realm.yml
         vars:
           openshift_master_url: "{{ hostvars['EVAL_VARS']['openshift_master_url'] }}"
+        when: user_rhsso_setup_master_realm | bool
 
       tags: ['user_rhsso']
       when: user_rhsso | default(true) | bool  
