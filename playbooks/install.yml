@@ -15,11 +15,11 @@
 - import_playbook: "./install_middleware_monitoring_config.yml"
 - import_playbook: "./install_mobile_middleware_monitoring_config.yml"
 - import_playbook: "./install_application_metrics.yml"
-- import_playbook: "./generate-customisation-inventory.yml"
-- import_playbook: "./customise_web_console_install.yml"
+#- import_playbook: "./generate-customisation-inventory.yml"
+#- import_playbook: "./customise_web_console_install.yml"
 # the mobile manifest can only be generated after the customisation playbook is run
-- import_playbook: "./install_mobile_manifest.yml"
-- import_playbook: "./apply_ocp_roles.yml"
+#- import_playbook: "./install_mobile_manifest.yml"
+#- import_playbook: "./apply_ocp_roles.yml"
 
 - hosts: master
   gather_facts: no
