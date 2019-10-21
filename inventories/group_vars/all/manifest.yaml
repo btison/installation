@@ -118,7 +118,7 @@ ups_proxy_release_tag: 'v1.1.0'
 ups_proxy_image: 'docker.io/openshift/oauth-proxy:{{ ups_proxy_release_tag }}'
 
 #application metrics
-application_metrics: false
+application_metrics: true
 
 #mobile developer console
 mdc: false
@@ -134,9 +134,10 @@ mdc_proxy_image: 'docker.io/openshift/oauth-proxy:{{ mdc_proxy_release_tag }}'
 mobile_walkthrough_tag: '0.4.0'
 mobile_walkthrough_location: 'https://github.com/aerogear/mobile-walkthrough#{{ mobile_walkthrough_tag }}'
 
+middleware_monitoring: false
 monitoring_label_name: 'monitoring-key'
 monitoring_label_value: 'middleware'
-middleware_monitoring_operator_release_tag: '0.0.23'
+middleware_monitoring_operator_release_tag: '0.0.27'
 middleware_monitoring_operator_resources: 'https://raw.githubusercontent.com/integr8ly/application-monitoring-operator/{{ middleware_monitoring_operator_release_tag }}/deploy'
 
 msbroker: false

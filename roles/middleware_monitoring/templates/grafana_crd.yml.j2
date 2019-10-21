@@ -20,6 +20,16 @@ spec:
             hostname:
               type: string
               description: Hostname for the ingress. Optional when --openshift is set
+            containers:
+              type: array
+              items:
+                type: object
+                description: Additional container to add to the grafana pod
+            secrets:
+              type: array
+              items:
+                type: string
+                description: Secret to be mounted as volume into the grafana deployment
             logLevel:
               type: string
               description: Log level of the grafana instance, defaults to info
@@ -41,7 +51,13 @@ spec:
             anonymous:
               type: boolean
               description: Anonymous auth enabled
-            dashboardLabelSelector:
+            config:
+              type: object
+              description: Grafana config
+            createRoute:
+              type: boolean
+              description: Create an OpenShift Route instead of Ingress
+            dashboardLabelSelectors:
               type: array
               items:
                 type: object
