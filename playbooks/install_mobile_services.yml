@@ -72,3 +72,4 @@
         apicurio_namespace: "{{ eval_apicurito_namespace }}"
         sso_realm: "{{ rhsso_realm }}"
       tags: ['msbroker']
+      when: msbroker
