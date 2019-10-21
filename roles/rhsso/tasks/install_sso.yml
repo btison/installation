@@ -26,6 +26,18 @@
   register: rhsso_keycloak
   failed_when: rhsso_keycloak.stderr != '' and 'AlreadyExists' not in rhsso_keycloak.stderr
 
+- name: "Wait for sso-postgresql deployment config to be created"
+  shell: oc get dc sso-postgresql -n {{ sso_namespace }}
+  register: result
+  until: result.stdout
+  retries: 50
+  delay: 1
+  failed_when: not result.stdout
+  changed_when: False
+
+- name: "Patch sso-postgresql dc"
+  shell: oc patch dc sso-postgresql -p '{"spec":{"triggers":[{"type":"ImageChange", "imageChangeParams":{"automatic":true,"containerNames":["sso-postgresql"],"from":{"kind":"ImageStreamTag","namespace":"openshift","name":"postgresql:9.6"}}}]}}' -n {{ sso_namespace }}
+
 - name: "Wait for keycloak to be ready"
   shell: "oc get keycloak/rhsso -o jsonpath='{.status.phase}' -n {{ sso_namespace }}"
   register: result
