@@ -86,7 +86,7 @@ openshift_username: ''
 openshift_password: ''
 openshift_token: ''
 
-prerequisites_install: True
+prerequisites_install: False
 
 # Used to manage images that reference registry.redhat.io which requires authentication
 # Pull secret is retrieved from the openshift namespace on a given cluster and can be set in each product namespace to pull images
