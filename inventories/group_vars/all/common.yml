@@ -70,7 +70,6 @@ create_cluster_admin: True
 # The result of this is that the below variables must be set in this file and removed from their respective role defaults
 # For further information regarding variable precedence, see https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable
 # NOTE: Any overrides set in environment specific group_vars will take precedence over the ones listed in this file
-user_rhsso: True
 
 aws_s3_backup_secret_name: 's3-credentials'
 
