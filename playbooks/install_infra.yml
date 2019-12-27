@@ -5,9 +5,11 @@
       include_role:
         name: walkthroughs
         tasks_from: walkthroughs
+      when: walkthroughs
     - name: Reboot template broker
       include_role:
         name: reboot_template_broker
+      when: walkthroughs
     -
       name: Setup Fuse on OpenShift
       include_role:

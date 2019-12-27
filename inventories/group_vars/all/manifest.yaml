@@ -123,6 +123,7 @@ monitoring_label_value: 'middleware'
 middleware_monitoring_operator_release_tag: '0.0.29'
 middleware_monitoring_operator_resources: 'https://raw.githubusercontent.com/integr8ly/application-monitoring-operator/{{ middleware_monitoring_operator_release_tag }}/deploy'
 
+msbroker: False
 msbroker_release_tag: 'v0.0.12'
 msbroker_template: 'https://raw.githubusercontent.com/integr8ly/managed-service-broker/{{ msbroker_release_tag }}/templates/broker.template.yaml'
 
@@ -132,11 +133,14 @@ amq_streams_repo_url: https://github.com/jboss-container-images/amqstreams-1-ope
 amq_version: 1.1.0
 
 # information about backups
+backup_restore_install: False
 backup_version: '1.0.10'
 backup_resources_location: 'https://raw.githubusercontent.com/integr8ly/backup-container-image/{{ backup_version }}/templates/openshift'
 backup_image: quay.io/integreatly/backup-container:{{ backup_version }}
 backup_schedule: '30 2 * * *'
 backup_namespace: "openshift-integreatly-backups"
+
+walkthroughs: False
 
 # Supported oc versions
 supported_oc_versions:
